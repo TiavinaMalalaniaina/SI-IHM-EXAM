@@ -21,6 +21,11 @@
             }
         }
 
+        public function saveUser($email, $password) {
+            $data = ['email' => $email, 'mdp' => $password];
+            $this->create($data);
+        }
+
         // Récupère tous les utilisateurs
         public function findAll() {
             return $this->db->get($this->table)->result();

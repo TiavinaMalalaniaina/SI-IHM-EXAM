@@ -32,4 +32,18 @@ class User extends CI_Controller {
         $this->session->sess_destroy();
         redirect('user/log');
     }
+
+    public function sign() {
+        $this->load->view('sign.php');
+    }
+
+    public function signin() {
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $confirmation = $this->input->post('confirmation');
+        if ($confirmation != $password) redirect('user/log/'.urlencode("Les mot de passes entrée sont différents"));
+        $this->user_model->saveUser($email, $password);
+        redirect('user/log');
+    }
+
 }

@@ -55,6 +55,7 @@
             <?php endif; ?>
             <button type="submit" class="btn btn-login">Se connecter</button>
           </form>
+          <p>Don't have an account? Sign <a href="<?php echo site_url('user/sign') ?>">Here</a></p>
         </div>
       </div>
     </div>
