@@ -26,4 +26,5 @@ class Regime extends CI_Controller {
         var_dump($nourritures);
 
     }
+
 }
