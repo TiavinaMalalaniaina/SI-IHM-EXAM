@@ -54,7 +54,12 @@
         
         // Récupère un utilisateur par son ID
         public function findById($id) {
-            return $this->db->get_where($this->table, array('id' => $id))->row();
+            $this->load->model('objectif_model');
+            $this->load->model('argent_model');
+            $user = $this->db->get_where($this->table, array('id' => $id))->row();
+            $user->objectif = $this->objectif_model->findByUser($user->id);
+            $user->argent = $this->argent_model->getArgent($user->id);
+            return $user;
         }
         
         // Crée un nouvel utilisateur

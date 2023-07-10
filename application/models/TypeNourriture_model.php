@@ -11,7 +11,10 @@
         
         // Récupère un utilisateur par son ID
         public function findById($id) {
-            return $this->db->get_where($this->table, array('id' => $id))->row();
+            $this->load->model('nourriture_model');
+            $type = $this->db->get_where($this->table, array('id' => $id))->row();
+            $type->nourritures = $this->nourriture_model->findByIdTypeNourriture($type->id);
+            return $type;
         }
         
         // Crée un nouvel utilisateur

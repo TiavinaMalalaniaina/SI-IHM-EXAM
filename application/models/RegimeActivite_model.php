@@ -3,7 +3,7 @@
     class RegimeActivite_model extends CI_Model {
         // Nom de la table dans la base de données
         private $table = 'regime_activite';
-        
+
         public function getRegime($poids) {
             $regimes = $this->findAll();
             foreach ($regimes as $regime) {
@@ -33,8 +33,19 @@
         }
         
         // Récupère un utilisateur par son ID
+        public function findByIdAndUser($id, $id_user) {
+            $regime = $this->db->get_where($this->table, array('id' => $id))->row();
+            $user = $this->user_model->findById($id_user);
+        }
+
+        // Récupère un utilisateur par son ID
         public function findById($id) {
-            return $this->db->get_where($this->table, array('id' => $id))->row();
+            $this->load->model('regime_model');
+            $this->load->model('activite_model');
+            $regime_activite = $this->db->get_where($this->table, array('id' => $id))->row();
+            $regime_activite->regime = $this->regime_model->findById($regime_activite->id_regime);
+            $regime_activite->activite = $this->activite_model->findById($regime_activite->id_activite);
+            return $regime_activite;
         }
         
         // Crée un nouvel utilisateur

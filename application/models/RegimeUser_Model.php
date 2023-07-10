@@ -1,8 +1,8 @@
 <?php
     if(!defined('BASEPATH')) exit('No direct script access allowed');
-    class Activite_Model extends CI_Model {
+    class RegimeUser_Model extends CI_Model {
         // Nom de la table dans la base de données
-        private $table = 'activite';
+        private $table = 'regime_user';
         
         // Récupère tous les régimes
         public function findAll() {
@@ -11,10 +11,7 @@
 
         // Récupère une régime par son ID
         public function findById($id) {
-            $this->load->model('detailActivite_Model');
-            $activite = $this->db->get_where($this->table, array('id' => $id))->row();
-            $activite->detail = $this->detailActivite_Model->findByActivite($activite->id);
-            return $activite;
+            return $this->db->get_where($this->table, array('id' => $id))->row();
         }
         
         // Crée un nouvele régime
