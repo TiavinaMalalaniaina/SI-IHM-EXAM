@@ -130,6 +130,7 @@ class Regime extends CI_Controller {
         $day = $this->Regime_model->GetAllDay();
         $data['nourriture'] = $nourriture;
         $data['day'] = $day;
+        $this->load->view('header', $data);
         $this->load->view('CrudRegime', $data);
     }
     public function ModifierRegime(){

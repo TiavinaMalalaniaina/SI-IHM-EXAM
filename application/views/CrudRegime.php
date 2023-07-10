@@ -7,7 +7,21 @@
  ?>
 <!doctype html>
 <html lang="en">
-<?php include("Header.php")?>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title><?php echo $title; ?></title>
+    <meta http-­‐equiv="Content-­‐Type" content="text/html; charset=UTF-­‐8" />
+    <title>mvc</title>
+    <link rel="stylesheet" href="<?php echo site_url('assets/bootstrap/css/bootstrap.css')?> ">
+    <link rel="stylesheet" href="<?php echo site_url('assets/bootstrap/css/bootstrap.min.css')?>">
+    <link rel="stylesheet" href="<?php echo site_url('assets/fonts/font-awesome.min.css')?>">
+    <link rel="stylesheet" href="<?php echo site_url('assets/fonts/ionicons.min.css')?>">
+    <link rel="stylesheet" href="<?php echo site_url('assets/css/Footer-Basic.css')?>">
+    <link rel="stylesheet" href="<?php echo site_url('assets/css/Navigation-with-Search.css')?>">
+    <link rel="stylesheet" href="<?php echo site_url('assets/css/styles.css')?>">
+</head>
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -98,25 +112,25 @@
 </body>
 
     <!--   Core JS Files   -->
-    <script src="<?php echo site()."assets/js/jquery-1.10.2.js"?>" type="text/javascript"></script>
-	<script src="<?php echo site()."assets/js/bootstrap.min.js"?>" type="text/javascript"></script>
+    <script src="<?php echo site_url()."assets/js/jquery-1.10.2.js"?>" type="text/javascript"></script>
+	<script src="<?php echo site_url()."assets/js/bootstrap.min.js"?>" type="text/javascript"></script>
 
 	<!--  Checkbox, Radio & Switch Plugins -->
-	<script src="<?php echo site()."assets/js/bootstrap-checkbox-radio.js"?>"></script>
+	<script src="<?php echo site_url()."assets/js/bootstrap-checkbox-radio.js"?>"></script>
 
 	<!--  Charts Plugin -->
-	<script src="<?php echo site()."assets/js/chartist.min.js"?>"></script>
+	<script src="<?php echo site_url()."assets/js/chartist.min.js"?>"></script>
 
     <!--  Notifications Plugin    -->
-    <script src="<?php echo site()."assets/js/bootstrap-notify.js"?>"></script>
+    <script src="<?php echo site_url()."assets/js/bootstrap-notify.js"?>"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
     <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
-	<script src="<?php echo site()."assets/js/paper-dashboard.js"?>"></script>
+	<script src="<?php echo site_url()."assets/js/paper-dashboard.js"?>"></script>
 
 	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-	<script src="<?php echo site()."assets/js/demo.js"?>"></script>
+	<script src="<?php echo site_url()."assets/js/demo.js"?>"></script>
 
 </html>

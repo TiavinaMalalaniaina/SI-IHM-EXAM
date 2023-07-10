@@ -1,6 +1,41 @@
 <?php
     if(!defined('BASEPATH')) exit('No direct script access allowed');
     class Regime_model extends CI_Model {
+        // Nom de la table dans la base de données
+        private $table = 'regime';
+        public function findAllByUser($id_user) {
+            $this->load->model('detailRegime_model');
+            $this->load->model('objectif_model');
+            $regimes = $this->db->get($this->table)->result();
+            foreach ($regimes as $regime) {
+                $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
+                $regime->objectif = $this->objectif_model->findByUser($id_user);
+            }
+            return $regimes;
+        } 
+        // Récupère tous les régimes
+        public function findAll() {
+            $this->load->model('detailRegime_model');
+            $this->load->model('objectif_model');
+            $regimes = $this->db->get($this->table)->result();
+            foreach ($regimes as $regime) {
+                $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
+            }
+            return $regimes;
+        }
+        // Récupère une régime par son ID
+        public function findById($id) {
+            $this->load->model('detailRegime_model');
+            $regime = $this->db->get_where($this->table, array('id' => $id))->row();
+            $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
+            return $regime;
+        }
+        
+        // Crée un nouvele régime
+        public function create($data) {
+            $this->db->insert($this->table, $data);
+            return $this->db->insert_id();
+        }
         public function GetAllNourriture() {
             $requete = "SELECT * FROM nourriture";
             $query = $this->db->query($requete);
