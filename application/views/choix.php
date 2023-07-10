@@ -99,8 +99,8 @@
                         
                         <div class="row">
                             <?php foreach ($regimes as $regime) { ?>
-                                <a href="<?php echo site_url('regime/detail/') ?>">
-                                    <div class="col-sm-6 col-lg-12">
+                                <div class="col-sm-6 col-lg-12">
+                                        <a href="<?php echo site_url('regime/detail/'.$regime->id) ?>">
                                         <div class="single_food_item media">
                                             <img src="<?php echo site_url('assets/img/food_menu/single_food_4.png') ?> " class="mr-3" alt="...">
                                             <div class="media-body align-self-center">
@@ -111,8 +111,8 @@
                                                 <p class="price mr-5"><?php echo formatMoney($regime->prix_total) ?> Ariary</p>
                                             </div>
                                         </div>
+                                        </a>
                                     </div>
-                                </a>
                                 <?php } ?>
                             </div>
 

@@ -6,6 +6,7 @@ class Regime extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('regimeActivite_model');
+        $this->load->model('regime_model');
     }
 
     public function choix() {
@@ -13,18 +14,20 @@ class Regime extends CI_Controller {
         $regimes = $this->regimeActivite_model->getRegime($user->objectif->kilos);
         $this->load->view('choix', ['regimes' => $regimes]);
     }
-
-    public function index() {
-        $user = $this->session->userdata('user');
-        $regimes = $this->regimeActivite_model->getRegime($poids);
-        $this->load->view('test', ['objects' => $regimes]);
-    }
 	
     public function detail($id_regime) {
         $this->load->model('detailRegime_model', 'detail');
         $regime = $this->regimeActivite_model->findById($id_regime);
         $regime->detail = $this->detail->findByRegime($id_regime);
         var_dump($regime);
+        $this->load->view('paiement');
+    }
+
+    public function paiement($id_regime) {
+        $regime = $this->regimeActivite_model->findById($id_regime);
+        $idUser = $this->session->userdata('id_user');
+        $user = $this->user_model->findById($idUser);
+        
     }
 
     public function test($id_regime, $day) {

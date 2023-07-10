@@ -3,11 +3,6 @@
     class Regime_Model extends CI_Model {
         // Nom de la table dans la base de données
         private $table = 'regime';
-        
-        public function getPlat($id_regime) {
-            $regime = $this->findById($id_regime);
-            
-        }
 
         public function findAllByUser($id_user) {
             $this->load->model('detailRegime_model');
