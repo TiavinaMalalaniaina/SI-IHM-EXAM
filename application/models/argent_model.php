@@ -39,6 +39,11 @@
             return $this->db->get_where($this->table_gain, array('id' => $id))->row();
         }
         
+        public function depense($data) {
+            $this->db->insert($this->table_depense, $data);
+            return $this->db->insert_id();
+        }
+
         // Crée un nouvel utilisateur
         public function create($data) {
             $this->db->insert($this->table_gain, $data);

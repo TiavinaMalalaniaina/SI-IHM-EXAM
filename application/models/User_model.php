@@ -26,10 +26,12 @@
         
         // Vérifie les informations de connexion de l'utilisateur
         public function login($email, $mdp) {
+            $this->load->model('objectif_model');
             $this->db->where('email', $email);
             $query = $this->db->get($this->table);            
             if ($query->num_rows() == 1) {
                 $user = $query->row();
+                $user->objectif = $this->objectif_model->findByUser($user->id);
                 if ($user->mdp === $mdp) {
                     return $user;
                 } else {
@@ -52,7 +54,12 @@
         
         // Récupère un utilisateur par son ID
         public function findById($id) {
-            return $this->db->get_where($this->table, array('id' => $id))->row();
+            $this->load->model('objectif_model');
+            $this->load->model('argent_model');
+            $user = $this->db->get_where($this->table, array('id' => $id))->row();
+            $user->objectif = $this->objectif_model->findByUser($user->id);
+            $user->argent = $this->argent_model->getArgent($user->id);
+            return $user;
         }
         
         // Crée un nouvel utilisateur

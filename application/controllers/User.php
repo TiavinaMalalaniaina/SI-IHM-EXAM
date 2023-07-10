@@ -22,7 +22,8 @@ class User extends CI_Controller {
             $email = $this->input->get('email');
             $password = $this->input->get('password');
             $this->session->set_userdata('user', $this->user_model->login($email, $password));
-            redirect('welcome');
+            $this->session->set_userdata('id_user', $this->user_model->login($email, $password)->id);
+            // redirect('welcome');
         } catch (Exception $e) {
             redirect('user/log/'.urlencode($e->getMessage()));
         }
