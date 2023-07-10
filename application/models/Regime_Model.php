@@ -9,10 +9,21 @@
             
         }
 
+        public function findAllByUser($id_user) {
+            $this->load->model('detailRegime_model');
+            $this->load->model('objectif_model');
+            $regimes = $this->db->get($this->table)->result();
+            foreach ($regimes as $regime) {
+                $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
+                $regime->objectif = $this->objectif_model->findByUser($id_user);
+            }
+            return $regimes;
+        } 
 
         // Récupère tous les régimes
         public function findAll() {
             $this->load->model('detailRegime_model');
+            $this->load->model('objectif_model');
             $regimes = $this->db->get($this->table)->result();
             foreach ($regimes as $regime) {
                 $regime->detail = $this->detailRegime_model->findByRegime($regime->id);

@@ -25,10 +25,12 @@
         
         // Vérifie les informations de connexion de l'utilisateur
         public function login($email, $mdp) {
+            $this->load->model('objectif_model');
             $this->db->where('email', $email);
             $query = $this->db->get($this->table);            
             if ($query->num_rows() == 1) {
                 $user = $query->row();
+                $user->objectif = $this->objectif_model->findByUser($user->id);
                 if ($user->mdp === $mdp) {
                     return $user;
                 } else {
