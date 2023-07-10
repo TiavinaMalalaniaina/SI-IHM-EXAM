@@ -4,9 +4,32 @@
         // Nom de la table dans la base de données
         private $table = 'regime_activite';
         
+        public function getRegime($poids) {
+            $regimes = $this->findAll();
+            foreach ($regimes as $regime) {
+                $regime->duree_total = (intval($poids / $regime->poids)+1) * $regime->duree;
+                $regime->prix_total = floatval($regime->prix) * intval($regime->duree_total / $regime->duree);
+            }
+            return $regimes;
+        }
+
+        // Calcul le prix d'un régime
+        public function calculPoids($id) {
+            $this->load->model('regime_model');
+            $this->load->model('activite_model');
+            $regime_activite = $this->findById($id);
+            $regime = $this->regime_model->findById($regime_activite->id_regime);
+            $activite = $this->activite_model->findById($regime_activite->id_activite);
+            return $regime->poids + $activite->poids;
+        }
+
         // Récupère tous les utilisateurs
         public function findAll() {
-            return $this->db->get($this->table)->result();
+            $regime_activites = $this->db->get($this->table)->result();
+            foreach ($regime_activites as $regime_activite) {
+                $regime_activite->poids = $this->calculPoids($regime_activite->id);
+            }
+            return $regime_activites;
         }
         
         // Récupère un utilisateur par son ID

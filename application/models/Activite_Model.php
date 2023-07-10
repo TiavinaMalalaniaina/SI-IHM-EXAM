@@ -1,31 +1,22 @@
 <?php
     if(!defined('BASEPATH')) exit('No direct script access allowed');
-    class Regime_Model extends CI_Model {
+    class Activite_Model extends CI_Model {
         // Nom de la table dans la base de données
-        private $table = 'regime';
+        private $table = 'activite';
         
-        public function getPlat($id_regime) {
-            $regime = $this->findById($id_regime);
-            
-        }
-
-
         // Récupère tous les régimes
         public function findAll() {
-            $this->load->model('detailRegime_model');
-            $regimes = $this->db->get($this->table)->result();
-            foreach ($regimes as $regime) {
-                $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
-            }
-            return $regimes;
+            return $this->db->get($this->table)->result();
+        }
+
+        public static function sfindById($id) {
+            $regime = new Regime_Model();
+            return $regime->db->get_where($regime->table, array('id' => $id))->row();
         }
 
         // Récupère une régime par son ID
         public function findById($id) {
-            $this->load->model('detailRegime_model');
-            $regime = $this->db->get_where($this->table, array('id' => $id))->row();
-            $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
-            return $regime;
+            return $this->db->get_where($this->table, array('id' => $id))->row();
         }
         
         // Crée un nouvele régime

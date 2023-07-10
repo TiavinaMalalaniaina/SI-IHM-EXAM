@@ -1,12 +1,26 @@
 <?php
     if(!defined('BASEPATH')) exit('No direct script access allowed');
-    class Regime_Model extends CI_Model {
+    class Plat_Model extends CI_Model {
         // Nom de la table dans la base de données
-        private $table = 'regime';
+        private $table = 'plat';
+        private $id_matin = 1;
+        private $id_midi = 2;
+        private $id_soir = 3;
         
-        public function getPlat($id_regime) {
-            $regime = $this->findById($id_regime);
-            
+        public function getRandomPlat($id_regime, $day) {
+            $this->load->model('regime_model');
+            $this->load->model('nourriture_model');
+            $regime = $this->regime_model->findById($id_regime);
+            $details = array();
+            $nourriture_plat = array();
+            foreach ($regime->detail as $detail) {
+                if ($detail->id_day == $day) {
+                    $detail->all_nourriture = $this->nourriture_model->findByIdTypeNourriture($detail->id_type_nourriture);
+                    var_dump($detail->all_nourriture);
+                    $nourriture_plat[] = $detail->all_nourriture[rand(0, count($detail->all_nourriture)-1)];
+                }
+            }
+            return $nourriture_plat;
         }
 
 

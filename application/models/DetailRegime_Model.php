@@ -4,7 +4,7 @@
         // Nom de la table dans la base de données
         private $table = 'detail_regime';
         
-        // Récupère tous les régimes
+        // Récupère tous les details
         public function findAll() {
             return $this->db->get($this->table)->result();
         }
@@ -14,8 +14,14 @@
             return $this->db->get_where($this->table, array('id' => $id))->row();
         }
 
+        // Récupère les détails du régime
         public function findByRegime($id_regime) {
-            return $this->db->get_where($this->table, array('id_regime' => $id_regime))->result();
+            $this->load->model('typeNourriture_model', 'typeNourriture');
+            $regimes = $this->db->get_where($this->table, array('id_regime' => $id_regime))->result();
+            foreach ($regimes as $regime) {
+                $regime->type = $this->typeNourriture->findById($regime->id_type_nourriture);
+            }
+            return $regimes;
         }
         
         // Crée un nouvele régime
