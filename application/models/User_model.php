@@ -3,7 +3,7 @@
     class User_model extends CI_Model {
         // Nom de la table dans la base de données
         private $table = 'users';
-        
+
         // Vérifie les informations de connexion de l'utilisateur
         public function login($email, $mdp) {
             $this->db->where('email', $email);
