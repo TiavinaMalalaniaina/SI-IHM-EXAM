@@ -1,5 +1,1 @@
-<ul>
-<?php foreach ($objects as $object) { ?>
-    <li><?php echo $object->poids ?></li>
-<?php } ?>    
-</ul>
+<h1>Argent: <?php echo $argent; ?></h1>
