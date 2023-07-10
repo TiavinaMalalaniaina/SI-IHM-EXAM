@@ -3,6 +3,7 @@
     class User_model extends CI_Model {
         // Nom de la table dans la base de données
         private $table = 'users';
+
         public function insererObjectif($kilos, $date,$id){
             $requete = "INSERT INTO objectif (kilos, id_users, dateobjectif) values (%s, %s, '%s')";
             $requete = sprintf($requete, $kilos, $id, $date);
