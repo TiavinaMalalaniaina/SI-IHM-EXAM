@@ -12,6 +12,13 @@ class Code extends CI_Controller {
         $this->load->model('argent_model');
     }
 
+    public function form() {
+        $user = $this->session->userdata('user');
+        $argent = $this->argent_model->getArgent($user->id);
+        $codes = $this->code_model->findAll();
+        $this->load->view('code', ['argent'=> formatMoney($argent), 'codes' => $codes]);
+    }
+
 	public function index()
 	{
 		$this->load->view('welcome_message');
@@ -33,11 +40,12 @@ class Code extends CI_Controller {
         $this->argent_model->create($data);
     }
 	
-    public function insertCode($code_string) {
+    public function insertCode() {
         try {
+            $code_string = $this->input->post('code_string');
             $user = $this->session->userdata('user');
-            $code = $this->code_model->validateCode($code_string);
-            $this->code_model->createWaitingCode($user->id, $code_string); //TODO: Changer en l'id de l'utilisateur connecter
+            $this->code_model->validateCode($code_string);
+            $this->code_model->createWaitingCode($user->id, $code_string);
             $this->code_model->useCode($code_string);
             $this->load->view('insertCode');
         } catch (Exception $e) {

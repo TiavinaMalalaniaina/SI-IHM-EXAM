@@ -32,7 +32,6 @@ class User extends CI_Controller {
         $this->session->sess_destroy();
         redirect('user/log');
     }
-<<<<<<< Updated upstream
 
     public function sign() {
         $this->load->view('sign.php');
@@ -47,7 +46,6 @@ class User extends CI_Controller {
         redirect('user/log');
     }
 
-=======
     public function inscrire($message = null){
         $this->load->view('inscriptionuser.php', ['error_message' => urldecode($message)]);
     }
@@ -70,5 +68,4 @@ class User extends CI_Controller {
         $this->user_model->insererObjectif($_POST['kilo'],$_POST['datepoidspoids'],$_POST['iduser']);
         $this->load->view('weight.php');
     }
->>>>>>> Stashed changes
 }

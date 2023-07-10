@@ -10,6 +10,11 @@
             return $code_db;
         }
 
+        public function findValide() {
+            $this->db->where('status !=', 10);
+            return $this->db->get($this->table)->row();
+        }
+        
         // Récupère tous les utilisateurs
         public function findAll() {
             return $this->db->get($this->table)->result();
