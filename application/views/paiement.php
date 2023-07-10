@@ -1,0 +1,1 @@
+<a href="<?php echo site_url('regime/paiement/'.$regime->id) ?>">Payer</a>
