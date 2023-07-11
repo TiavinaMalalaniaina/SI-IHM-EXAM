@@ -35,7 +35,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
+                        <a class="navbar-brand" href="index.html"> <img src="<?php echo site_url('assets/img/logo.png') ?>" alt="logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +100,7 @@
                         <div class="row">
                             <?php foreach ($regimes as $regime) { ?>
                                 <div class="col-sm-6 col-lg-12">
-                                        <a href="<?php echo site_url('regime/detail/'.$regime->id) ?>">
+                                    <a href="<?php echo site_url('regime/detail/'.$regime->id) ?>">
                                         <div class="single_food_item media">
                                             <img src="<?php echo site_url('assets/img/food_menu/single_food_4.png') ?> " class="mr-3" alt="...">
                                             <div class="media-body align-self-center">
@@ -111,7 +111,7 @@
                                                 <p class="price mr-5"><?php echo formatMoney($regime->prix_total) ?> Ariary</p>
                                             </div>
                                         </div>
-                                        </a>
+                                    </a>
                                     </div>
                                 <?php } ?>
                             </div>

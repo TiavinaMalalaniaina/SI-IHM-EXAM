@@ -4,6 +4,16 @@
         // Nom de la table dans la base de données
         private $table = 'regime_activite';
 
+        public function findRegimeActuelle($regime_user) {
+            $this->load->model('platUser_model');
+            $this->load->model('activite_model');
+            $this->db->where('id', $regime_user->id_regime_activite);
+            $regime = $this->db->get($this->table)->row();
+            $regime->plats = $this->platUser_model->findPlatToday($regime_user->id);
+            $regime->activite = $this->activite_Model->findById($regime->id_activite);
+            return $regime;
+        }
+
         public function getRegime($poids) {
             $regimes = $this->findAll();
             foreach ($regimes as $regime) {

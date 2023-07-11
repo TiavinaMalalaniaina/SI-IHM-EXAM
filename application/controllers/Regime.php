@@ -7,6 +7,14 @@ class Regime extends CI_Controller {
         parent::__construct();
         $this->load->model('regimeActivite_model');
         $this->load->model('regime_model');
+        $this->load->model('regimeUser_model');
+    }
+
+    public function actuelle() {
+        $id_user = $this->session->userdata('id_user');
+        $regime = $this->regimeUser_model->findRegimeToday($id_user);
+        var_dump($regime);
+        $this->load->view('regime', ['regime'=>$regime]);
     }
 
     public function choix() {
