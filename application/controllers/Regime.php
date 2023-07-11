@@ -13,7 +13,6 @@ class Regime extends CI_Controller {
     public function actuelle() {
         $id_user = $this->session->userdata('id_user');
         $regime = $this->regimeUser_model->findRegimeToday($id_user);
-        var_dump($regime);
         $this->load->view('regime', ['regime'=>$regime]);
     }
 
@@ -102,8 +101,6 @@ class Regime extends CI_Controller {
     public function test($id_regime, $day) {
         $this->load->model('plat_model', 'plat');
         $nourritures = $this->plat->getRandomPlat($id_regime, $day);
-        var_dump($nourritures);
-
     }
 
     public function insertionRegime(){  

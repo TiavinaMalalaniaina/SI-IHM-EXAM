@@ -10,8 +10,16 @@
             $this->db->where('id', $regime_user->id_regime_activite);
             $regime = $this->db->get($this->table)->row();
             $regime->plats = $this->platUser_model->findPlatToday($regime_user->id);
-            $regime->activite = $this->activite_Model->findById($regime->id_activite);
+            $regime->activite = $this->findActiviteById($regime->id_activite);
             return $regime;
+        }
+
+        // Récupère une régime par son ID (Hors classe)
+        public function findActiviteById($id) {
+            $this->load->model('detailActivite_Model');
+            $activite = $this->db->get_where($this->table, array('id' => $id))->row();
+            $activite->detail = $this->detailActivite_Model->findByActivite($activite->id);
+            return $activite;
         }
 
         public function getRegime($poids) {
