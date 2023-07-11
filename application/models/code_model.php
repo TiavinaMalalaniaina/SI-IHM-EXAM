@@ -3,6 +3,7 @@
     class Code_model extends CI_Model {
         // Nom de la table dans la base de données
         private $table = 'code';
+        private $waiting = 'waiting_code';
         
         public function validateCode($code) {
             $code_db = $this->find($code);
@@ -13,6 +14,16 @@
         public function findValide() {
             $this->db->where('status !=', 10);
             return $this->db->get($this->table)->row();
+        }
+
+        public function findAllWaitingCode() {
+            $this->db->where('status', 5);
+            $codes = $this->db->get($this->waiting)->result();
+            foreach ($codes as $code) {
+                $code->user = $this->user_model->findById($code->id_users);
+                $code->code = $this->code_model->findById($code->id_code);
+            }
+            return $codes;
         }
         
         // Récupère tous les utilisateurs

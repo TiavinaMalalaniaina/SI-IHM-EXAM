@@ -4,6 +4,24 @@
         // Nom de la table dans la base de données
         private $table = 'plat_user';
         
+
+        public function findPlatToday($id_regime_user) {
+            date_default_timezone_set('Indian/Antananarivo');
+            $this->load->model('nourriture_model');
+            $this->db->where('id_regime_user', $id_regime_user);
+            $this->db->where('date_plat', date('Y-m-d'));
+            $plats = $this->db->get($this->table)->result();
+            foreach ($plats as $plat) {
+                $plat->nourriture = $this->findNourritureById($plat->id_nourriture);
+            }
+            return $plats;
+        }
+
+        public function findNourritureById($id) {
+            return $this->db->get_where('nourriture', array('id' => $id))->row();
+        }
+
+
         public function getRandomPlat($id_regime, $day) {
             $this->load->model('regime_model');
             $this->load->model('nourriture_model');

@@ -3,18 +3,8 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo site_url()."assets/img/apple-icon.png"?>">
-	<link rel="icon" type="image/png" sizes="96x96" href="<?php echo site_url()."assets/img/favicon.png"?>">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>Paper Dashboard by Creative Tim</title>
-
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo site_url()."assets/img/apple-icon.png"?>">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo site_url()."assets/assets/img/apple-icon.png"?>">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/assets/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>Paper Dashboard by Creative Tim</title>
@@ -23,17 +13,17 @@
     <meta name="viewport" content="width=device-width" />
 
  
-    <link href="<?php echo site_url()."assets/css/bootstrap.min.css"?>" rel="stylesheet" />
+    <link href="<?php echo site_url()."assets/assets/css/bootstrap.min.css"?>" rel="stylesheet" />
  
-    <link href="<?php echo site_url()."assets/css/animate.min.css"?>" rel="stylesheet"/>
+    <link href="<?php echo site_url()."assets/assets/css/animate.min.css"?>" rel="stylesheet"/>
  
-    <link href="<?php echo site_url()."assets/css/paper-dashboard.css"?>" rel="stylesheet"/>
+    <link href="<?php echo site_url()."assets/assets/css/paper-dashboard.css"?>" rel="stylesheet"/>
  
-    <link href="<?php echo site_url()."assets/css/demo.css"?>" rel="stylesheet" />
+    <link href="<?php echo site_url()."assets/assets/css/demo.css"?>" rel="stylesheet" />
  
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="<?php echo site_url()."assets/css/themify-icons.css"?>" rel="stylesheet">
+    <link href="<?php echo site_url()."assets/assets/css/themify-icons.css"?>" rel="stylesheet">
 
 </head>
 <body>
@@ -55,7 +45,7 @@
 
             <ul class="nav">
                 <li>
-                    <a href="dashboard.html">
+                    <a href="<?php echo site_url()."Admin/StatistiqueArgent "?>">
                         <i class="ti-panel"></i>
                         <p>Dashboard</p>
                     </a>
@@ -73,33 +63,15 @@
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
-                        <i class="ti-text"></i>
-                        <p>Typography</p>
+                    <a href="<?php echo site_url()."Activite/"?>">
+                        <i class="ti-list"></i>
+                        <p>Liste des Activites</p>
                     </a>
                 </li>
                 <li>
-                    <a href="icons.html">
+                    <a href="<?php echo site_url()."code/validationform"?>">
                         <i class="ti-pencil-alt2"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="ti-map"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="ti-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="ti-export"></i>
-                        <p>Upgrade to PRO</p>
+                        <p>Validation de code</p>
                     </a>
                 </li>
             </ul>

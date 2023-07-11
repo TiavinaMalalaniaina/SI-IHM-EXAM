@@ -7,6 +7,17 @@ class Regime extends CI_Controller {
         parent::__construct();
         $this->load->model('regimeActivite_model');
         $this->load->model('regime_model');
+        $this->load->model('regimeUser_model');
+        $id_user = $this->session->userdata('id_user');
+        if ($id_user == null) redirect('user/log');
+        $user = $this->user_model->findById($id_user);
+        if ($user->objectif == null) redirect('user/inscription');
+    }
+
+    public function actuelle() {
+        $id_user = $this->session->userdata('id_user');
+        $regime = $this->regimeUser_model->findRegimeToday($id_user);
+        $this->load->view('regime', ['regime'=>$regime]);
     }
 
     public function choix() {
@@ -21,12 +32,12 @@ class Regime extends CI_Controller {
         $this->load->model('objectif_model');
         $id_user = $this->session->userdata('id_user');
         $regime = $this->regimeActivite_model->findById($id_regime);
+        $user = $this->user_model->findById($id_user);
         $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
         $regime->objectif = $this->objectif_model->findByUser($id_user);
         $regime->duree_total = (intval($regime->objectif->kilos / $regime->regime->poids)+1) * $regime->duree;
         $regime->prix_total = floatval($regime->prix) * intval($regime->duree_total / $regime->duree);
-        var_dump($regime);
-        $this->load->view('paiement', ['regime' => $regime]);
+        $this->load->view('paiement', ['regime' => $regime, 'user' => $user]);
     }
 
     public function paiement($id_regime) {
@@ -88,14 +99,12 @@ class Regime extends CI_Controller {
                 }
             }
         }
-        redirect('regime/choix');
+        redirect('regime/actuelle');
     }
 
     public function test($id_regime, $day) {
         $this->load->model('plat_model', 'plat');
         $nourritures = $this->plat->getRandomPlat($id_regime, $day);
-        var_dump($nourritures);
-
     }
 
     public function insertionRegime(){  

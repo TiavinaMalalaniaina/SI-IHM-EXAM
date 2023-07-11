@@ -13,4 +13,10 @@ if ( ! function_exists('checkPaiement')) {
     }
 }
 
+if ( ! function_exists('formatCode')) {
+    function formatCode($code) {
+        return str_replace(' ', '', $code);
+    }
+}
+
 ?>

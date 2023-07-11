@@ -99,7 +99,6 @@
                     <div class="col-lg-5" style="margin-top: -120px;">
                         <div class="banner_text">
                             <div class="banner_text_iner">
-                                <form action="/login" method="POST">
                                 <div class="form-group">
                                         <label for="datepoids">Date</label>
                                         <input type="date" class="form-control" id="username" name="datepoidspoids" required>
@@ -113,15 +112,15 @@
                                         <label for="taille">Taille (cm)</label>
                                         <input type="number" class="form-control" id="password" name="taille" required>
                                     </div>
-
+                                    <?php if (!isset($user) || $user->objectif == null) { ?>
                                     <div class="form-group">
                                         <label for="kilo">Kilos à Gagner/Perdre</label>
                                         <input type="number" class="form-control" id="password" name="kilo" required>
                                     </div>
+                                    <?php } ?>
 
                                 
                                     <button type="submit" class="btn_10">Continuer <img src="<?php echo site_url()."assets/img/icon/left_1.svg"?>" alt=""></button>
-                                </form>
                             </div>
                         </div>
                     </div>
