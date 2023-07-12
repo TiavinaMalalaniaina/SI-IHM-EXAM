@@ -83,42 +83,18 @@
                 <h2>Activite Journaliere</h2>
             </div>
             </div>
-
             <div class="row">
-                <div class="col-sm-3 col-lg-3">
-                    <div class="single_food_item media">
-                        <img src="run.png" class="mr-3" width="110px" height="100px">
-                        <div class="media-body align-self-center">
-                            <p>Marathon</p>
-                            <p>$40.00</p>
+                <?php foreach ($regime->regime->activite->detail as $activite) { ?>
+                    <div class="col-sm-3 col-lg-3">
+                        <div class="single_food_item media">
+                            <img src="run.png" class="mr-3" width="110px" height="100px">
+                            <div class="media-body align-self-center">
+                                <p><?= $activite->type_activite->libelle ?></p>
+                                <p><?= $activite->quantite ?></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-3 col-lg-3">
-                    <div class="single_food_item media">
-                        <img src="run.png" class="mr-3" width="110px" height="100px">
-                        <div class="media-body align-self-center">
-                            <p>Marathon</p>
-                            <p>$40.00</p>
-                        </div>
-                    </div>
-                </div><div class="col-sm-3 col-lg-3">
-                    <div class="single_food_item media">
-                        <img src="push.png" class="mr-3" width="110px" height="100px">
-                        <div class="media-body align-self-center">
-                            <p>Marathon</p>
-                            <p>$40.00</p>
-                        </div>
-                    </div>
-                </div><div class="col-sm-3 col-lg-3">
-                    <div class="single_food_item media">
-                        <img src="run.png" class="mr-3" width="110px" height="100px">
-                        <div class="media-body align-self-center">
-                            <p>Marathon</p>
-                            <p>$40.00</p>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
             
         </div>
@@ -152,9 +128,13 @@
                                     <div class="single_food_item media">
                                         <img src="<?php echo site_url('assets/img/food_menu/single_food_3.png') ?>" class="mr-3" alt="...">
                                         <div class="media-body align-self-center">
-                                            <h3>Summer</h3>
-                                            <p>They're wherein heaven seed hath nothing</p>
-                                            <h5>$40.00</h5>
+                                            <!-- <h3></h3> -->
+                                            <?php foreach ($regime->regime->plats as $nourriture) { ?>
+                                                <?php if($nourriture->id_day==1) { ?>
+                                                <p><?= $nourriture->nourriture->nom ?>: <?= $nourriture->quantite ?></p>
+                                                <?php } ?>
+                                            <?php } ?>
+                                            <!-- <h5>$40.00</h5> -->
                                         </div>
                                     </div>
                                 </div>
@@ -178,11 +158,11 @@
                                     
                                     <div class="single_food_item media">
                                         <img src="<?php echo site_url('assets/img/food_menu/single_food_3.png') ?>" class="mr-3" alt="...">
-                                        <div class="media-body align-self-center">
-                                            <h3>Summer Cooking</h3>
-                                            <p>They're wherein heaven seed hath nothing</p>
-                                            <h5>$40.00</h5>
-                                        </div>
+                                        <?php foreach ($regime->regime->plats as $nourriture) { ?>
+                                            <?php if($nourriture->id_day==2) { ?>
+                                            <p><?= $nourriture->nourriture->nom ?>: <?= $nourriture->quantite ?></p>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-6">
@@ -206,11 +186,11 @@
                                    
                                     <div class="single_food_item media">
                                         <img src="<?php echo site_url('assets/img/food_menu/single_food_6.png')?>" class="mr-3" alt="...">
-                                        <div class="media-body align-self-center">
-                                            <h3>Chicken Roast</h3>
-                                            <p>They're wherein heaven seed hath nothing</p>
-                                            <h5>$40.00</h5>
-                                        </div>
+                                        <?php foreach ($regime->regime->plats as $nourriture) { ?>
+                                            <?php if($nourriture->id_day==3) { ?>
+                                            <p><?= $nourriture->nourriture->nom ?>: <?= $nourriture->quantite ?></p>
+                                            <?php } ?>
+                                        <?php } ?>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-6">
