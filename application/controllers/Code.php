@@ -11,18 +11,23 @@ class Code extends CI_Controller {
         $this->load->model('code_model');
         $this->load->model('argent_model');
     }
-
+    
     public function form() {
         $user = $this->session->userdata('user');
         $argent = $this->argent_model->getArgent($user->id);
         $codes = $this->code_model->findAll();
         $this->load->view('code', ['argent'=> formatMoney($argent), 'codes' => $codes]);
     }
-
+    
 	public function index()
 	{
-		$this->load->view('welcome_message');
+        $this->load->view('welcome_message');
 	}
+
+    public function validationForm() {
+        $codes = $this->code_model->findAllWaitingCode();
+        $this->load->view('validation', ['codes' => $codes]);
+    }
 
     public function validateCode($id_waiting) {
         $state = array(
@@ -38,6 +43,7 @@ class Code extends CI_Controller {
             'id_user' => $waiting->id_users
         );
         $this->argent_model->create($data);
+        redirect('/code/validationForm');
     }
 	
     public function insertCode() {

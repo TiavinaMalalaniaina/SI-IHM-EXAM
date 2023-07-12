@@ -516,15 +516,6 @@ ul {
   transition: 0.5s;
 }
 
-
-.btn_10{
-  background-color: #ff6426;
-  padding: 5px;
-  color: white;
-  border: none;
-  width: 150px;
-  border-radius: 10px;
-}
 /* line 19, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_button.scss */
 .submit_btn:hover {
   background: transparent;
@@ -542,7 +533,6 @@ ul {
   -webkit-transition: 0.5s;
   transition: 0.5s;
   text-transform: capitalize;
-  margin-left: 10px;
 }
 
 /* line 34, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_button.scss */
@@ -2606,7 +2596,6 @@ ul {
 .banner_part .banner_text .banner_text_iner {
   display: table-cell;
   vertical-align: middle;
-  font-size: 16px;
 }
 
 @media (max-width: 576px) {

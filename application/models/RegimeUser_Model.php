@@ -4,15 +4,28 @@
         // Nom de la table dans la base de données
         private $table = 'regime_user';
         
-        public function findRegimeToday($id_user) {
-            $this->load->model('platUser_model');
-            $this->load->model('regimeActivite_model');
+        public function haveRegime($id_user) {
             $this->db->where('id_user', $id_user);
             $this->db->order_by('debut','DESC');
             $this->db->limit(1);
             $regime = $this->db->get($this->table)->row();
-            $regime->regime = $this->regimeActivite_model->findRegimeActuelle($regime);
-            return $regime;
+            if ($regime != null) return true;
+            return false;
+        }
+
+        public function findRegimeToday($id_user) {
+            try {
+                $this->load->model('platUser_model');
+                $this->load->model('regimeActivite_model');
+                $this->db->where('id_user', $id_user);
+                $this->db->order_by('debut','DESC');
+                $this->db->limit(1);
+                $regime = $this->db->get($this->table)->row();
+                $regime->regime = $this->regimeActivite_model->findRegimeActuelle($regime);
+                return $regime;
+            } catch (Exception $e) {
+                throw $e;
+            }
         }
 
         // Récupère tous les régimes

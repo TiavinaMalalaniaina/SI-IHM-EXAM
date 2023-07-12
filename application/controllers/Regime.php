@@ -8,6 +8,10 @@ class Regime extends CI_Controller {
         $this->load->model('regimeActivite_model');
         $this->load->model('regime_model');
         $this->load->model('regimeUser_model');
+        $id_user = $this->session->userdata('id_user');
+        if ($id_user == null) redirect('user/log');
+        $user = $this->user_model->findById($id_user);
+        if ($user->objectif == null) redirect('user/inscription');
     }
 
     public function actuelle() {

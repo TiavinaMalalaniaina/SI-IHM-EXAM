@@ -73,9 +73,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="typography.html">
+                    <a href="<?= site_url('code/validationForm') ?>">
                         <i class="ti-text"></i>
-                        <p>Typography</p>
+                        <p>Validation Code</p>
                     </a>
                 </li>
                 <li>
