@@ -38,7 +38,7 @@
                 <?php foreach ($regime->regime->activite->detail as $activite) { ?>
                     <div class="col-sm-3 col-lg-3">
                         <div class="single_food_item media">
-                            <img src="run.png" class="mr-3" width="110px" height="100px">
+                            <img src="<?php echo site_url('assets/img/run.png') ?>" class="mr-3" width="110px" height="100px">
                             <div class="media-body align-self-center">
                                 <p><?= $activite->type_activite->libelle ?></p>
                                 <p><?= $activite->quantite ?></p>

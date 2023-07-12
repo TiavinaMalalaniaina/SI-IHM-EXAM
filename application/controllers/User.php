@@ -100,9 +100,10 @@ class User extends CI_Controller {
 
     public function Profil(){
         $this->load->model('user_model');
-        $result = $this->user_model->GetUserById(3);
-        $donees = $this->user_model->GetDetailsUsers(3);
-        $objectif = $this->user_model->GetObjectif(3);
+        $id_user = $this->session->userdata('id_user');
+        $result = $this->user_model->GetUserById($id_user);
+        $donees = $this->user_model->GetDetailsUsers($id_user);
+        $objectif = $this->user_model->GetObjectif($id_user);
         $data['result'] = $result;
         $data['donnees'] = $donees;
         $data['objectif'] = $objectif;

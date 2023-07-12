@@ -32,12 +32,12 @@ class Regime extends CI_Controller {
         $this->load->model('objectif_model');
         $id_user = $this->session->userdata('id_user');
         $regime = $this->regimeActivite_model->findById($id_regime);
+        $user = $this->user_model->findById($id_user);
         $regime->detail = $this->detailRegime_model->findByRegime($regime->id);
         $regime->objectif = $this->objectif_model->findByUser($id_user);
         $regime->duree_total = (intval($regime->objectif->kilos / $regime->regime->poids)+1) * $regime->duree;
         $regime->prix_total = floatval($regime->prix) * intval($regime->duree_total / $regime->duree);
-        var_dump($regime);
-        $this->load->view('paiement', ['regime' => $regime]);
+        $this->load->view('paiement', ['regime' => $regime, 'user' => $user]);
     }
 
     public function paiement($id_regime) {
@@ -99,7 +99,7 @@ class Regime extends CI_Controller {
                 }
             }
         }
-        redirect('regime/choix');
+        redirect('regime/actuelle');
     }
 
     public function test($id_regime, $day) {

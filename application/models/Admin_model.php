@@ -3,14 +3,31 @@
     class Admin_model extends CI_Model 
     {
         public function EvolutionClient(){
-            $requete = "SELECT * FROM detail_user group by id_users";
+            $requete = "SELECT dateobjectif, Count(*) AS count  FROM OBJECTIF GROUP BY DATEOBJECTIF";
             $query = $this->db->query($requete);
             return $query->result();
         }
         public function EvolutionCaisse(){
-            $result = "SELECT * FROM depense_user";
+            $requete = "SELECT * FROM depense_user";
             $query = $this->db->query($requete);
             return $query->result();
         }
+        public function NombreObjectif($signe){
+            $sig = '>';
+            if($signe == -1){
+                $sig = '<';
+            }else if($signe == 1){
+                $sig = '>';
+            }else{
+                $sig = '=';
+            }
+            $requete = "SELECT Count(*) AS count  FROM OBJECTIF  where kilos %s 0   ";
+            $requete = sprintf($requete, $sig);
+            $query = $this->db->query($requete);
+            return $query->result();
+        }
+        
     }
+   
+    
 ?>

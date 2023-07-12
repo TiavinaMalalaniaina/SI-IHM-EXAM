@@ -3,19 +3,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
-    public function StatistiqueUtilisateur(){
+    public function StatistiqueArgent() {
         $this->load->model('Admin_model');
-        $activite = $this->Admin_model->EvolutionClient();
-        $data['activite'] = $activite;
+        $user = $this->Admin_model->EvolutionClient();
+        $statistique = $this->Admin_model->EvolutionCaisse(); 
+        $userDate = array();
+        $userArray = array();
+        for($i=0; $i<count($user); $i++){
+            array_push($userArray, $user[$i]->count);
+            array_push($userDate, $user[$i]-> dateobjectif);
+        }   
+        $stat = array();
+        for($i=0; $i<count($statistique); $i++){
+            array_push($stat, $statistique[$i]->valeur);
+        }
+        $daty = array();
+        for($i=0; $i<count($statistique); $i++){
+            array_push($daty, $statistique[$i]->date_depense);
+        }
+        $data['userdate'] = $userDate;
+        $data['user'] = $userArray;
+        $data['daty'] = $daty;
+        $data['stat'] = $stat;
+        $positive = $this->Admin_model->NombreObjectif(1)[0]->count;
+        $negative = $this->Admin_model->NombreObjectif(-1)[0]->count; 
+        $total = $positive+$negative;
+        $valeur = array();
+        array_push($valeur, ($positive*100/$total));
+        array_push($valeur, ($negative*100/$total)); 
+        $data['valeur'] = $valeur; 
+        $this->load->view('Header.php');
         $this->load->view('Statistique.php', $data);
     }
-    public function StatistiqueArgent(){
-        $this->load->model('Admin_model');
-        $statistique = $this->Admin_model->EvolutionCaisse();
-        $data['statistique'] = $statistique;
-        $this->load->view('Statistique.php', $data);
-    }
-
     
     public function validationForm() {
         $this->load->model('code_model');
@@ -53,5 +72,9 @@ class Admin extends CI_Controller {
         } catch (Exception $e) {
             redirect('admin/log/'.urlencode($e->getMessage()));
         }
+    }
+
+    public function index() {
+        redirect('/admin/log');
     }
 }

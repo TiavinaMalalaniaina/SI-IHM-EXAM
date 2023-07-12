@@ -24,6 +24,12 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="menu_btn">
+                            <a href="#regervation" class="btn_1 d-none d-sm-block">S' inscrire</a>
+                        </div>
+                        <div class="menu_btn">
+                            <a href="Login.html" class="btn_1 d-none d-sm-block">Login</a>
+                        </div>
                         
                     </nav>
                 </div>
